@@ -2,16 +2,12 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  mode: "production",
-  entry: "./src/index.js",
+  entry: "./src/js/index.js",
   devtool: "inline-source-map",
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       favicon: "./src/assets/icons/favicon.ico",
-      filename: "index.html",
-      inject: "head",
-      scriptLoading: "defer",
     }),
   ],
   output: {
@@ -19,7 +15,6 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     clean: true,
   },
-
   module: {
     rules: [
       {
