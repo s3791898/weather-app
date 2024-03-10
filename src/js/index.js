@@ -1,11 +1,17 @@
 import "../assets/styles/style.css";
-import weatherAPI from "./weatherAPI";
-import weatherDisplay from "./weatherDisplay";
+import { getData } from "./weatherAPI";
+import { setSearchResult } from "./weatherDisplay";
 
 const searchForm = document.getElementById("searchForm");
-const searchInput = doucment.getElementById("searchInput");
+const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
 
 searchForm.addEventListener("submit", (event) => {
   event.preventDefault();
+});
+
+searchBtn.addEventListener("click", async () => {
+  if (searchInput.value === "") return;
+  const weatherData = await getData(searchInput.value);
+  setSearchResult(weatherData);
 });

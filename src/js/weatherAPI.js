@@ -1,17 +1,37 @@
 function convertData(data) {
   const {
-    name: cityName,
-    main: { temp: temperature, feels_like: feelsLike, humidity },
-    wind: { speed: windSpeed },
+    location: { name: cityName, country },
+    current: {
+      temp_c: celsiusTemperature,
+      temp_f: fahrenheitTemperature,
+      condition: { text: weatherCondition, icon: weatherIcon },
+      wind_kph: windKph,
+      feelslike_c: feelsLikeInCelsius,
+      feelslike_f: feelsLikeInFahrenheit,
+      humidity,
+    },
   } = data;
-  return { cityName, temperature, feelsLike, humidity, windSpeed };
+  return {
+    cityName,
+    country,
+    celsiusTemperature,
+    weatherCondition,
+    weatherIcon,
+    fahrenheitTemperature,
+    windKph,
+    feelsLikeInCelsius,
+    feelsLikeInFahrenheit,
+    humidity,
+  };
 }
 
 async function getData(city) {
-  const endpoint = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=28fe7b5f9a78838c639143fc517e4343`;
+  const endpoint = `https://api.weatherapi.com/v1/current.json?key=b2b5b1a3006540f1b21234921240903&q=${city}&aqi=no`;
   try {
     const response = await fetch(endpoint, { mode: "cors" });
-    if (!response.ok) throw new Error(`City ${city} not found`);
+    if (!response.ok) {
+      throw new Error(`City ${city} not found`);
+    }
     const data = convertData(await response.json());
     return data;
   } catch (error) {
