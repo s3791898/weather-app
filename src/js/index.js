@@ -14,4 +14,5 @@ searchBtn.addEventListener("click", async () => {
   if (searchInput.value === "") return;
   const weatherData = await getData(searchInput.value);
   setSearchResult(weatherData);
+  searchInput.value = "";
 });
