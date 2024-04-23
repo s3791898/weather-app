@@ -1,9 +1,11 @@
-function setSearchResult(weatherApiData) {
-  if (!weatherApiData) return;
+function setSearchResult(weatherData) {
+  // If weatherApiData is falsy then return out of the function
+  if (!weatherData) return;
 
   const searchResult = document.getElementById("searchResult");
   searchResult.classList.add("active");
 
+  // Storing a reference to the HTML elements in a variable
   const location = document.getElementById("location");
   const weatherCondition = document.getElementById("weatherCondition");
   const temperature = document.getElementById("temperature");
@@ -12,13 +14,14 @@ function setSearchResult(weatherApiData) {
   const humidity = document.getElementById("humidity");
   const weatherIcon = document.getElementById("weatherIcon");
 
-  location.textContent = `${weatherApiData.cityName}, ${weatherApiData.country}`;
-  weatherCondition.textContent = `${weatherApiData.weatherCondition}`;
-  temperature.textContent = `${weatherApiData.celsiusTemperature} °C`;
-  feelsLike.textContent = `Feels like: ${weatherApiData.feelsLikeInCelsius} °C`;
-  windSpeed.textContent = `Wind: ${weatherApiData.windKph} Km/h`;
-  humidity.textContent = `Humidity: ${weatherApiData.humidity}%`;
-  weatherIcon.src = `${weatherApiData.weatherIcon}`;
+  // Adding the textContent for the HTML elements with the data retrieved from the weatherApiData call
+  location.textContent = `${weatherData.cityName}, ${weatherData.country}`;
+  weatherCondition.textContent = `${weatherData.weatherCondition}`;
+  temperature.textContent = `${weatherData.celsiusTemperature} °C`;
+  feelsLike.textContent = `Feels like: ${weatherData.feelsLikeInCelsius} °C`;
+  windSpeed.textContent = `Wind: ${weatherData.windKph} Km/h`;
+  humidity.textContent = `Humidity: ${weatherData.humidity}%`;
+  weatherIcon.src = `${weatherData.weatherIcon}`;
 }
 
 export { setSearchResult };

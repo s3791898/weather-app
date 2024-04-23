@@ -11,7 +11,9 @@ searchForm.addEventListener("submit", (event) => {
 });
 
 searchBtn.addEventListener("click", async () => {
+  // If searchInput is empty then just return out of the function
   if (searchInput.value === "") return;
+  // If searchInput is NOT empty then call the getData function from weatherAPI.js and store the result in the weatherData variable
   const weatherData = await getData(searchInput.value);
   setSearchResult(weatherData);
   searchInput.value = "";
